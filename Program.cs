@@ -1742,6 +1742,41 @@ namespace Euler1
         }
 
         #endregion
+
+
+        #region Reciprocal cycles 1/d = 0,xxxxxxx
+        static void ReciprocalCycles()
+        {
+            int n = 1;
+            int d = 999;
+            int cycle = 0;
+            int maxcycle = 0;
+
+            for (int i = d; i > n; i--) // the larger the number, the higher the probability to have recurrence.
+            {
+                int[] rems = new int[i];
+                int remainder = 1;
+                int pos = 0;
+
+                while (rems[remainder] == 0 && remainder != 0)
+                {
+                    rems[remainder] = pos;
+                    Math.DivRem(10 * remainder, i, out remainder);
+                    pos++;
+                }
+
+                if (pos - rems[remainder] > cycle)
+                {
+                    cycle = pos - rems[remainder];
+                }
+
+
+            }
+            maxcycle = cycle + 1;
+            Console.WriteLine("the longest recurring cycle = " + maxcycle);
+        }
+
+        #endregion
     }
 
 }
